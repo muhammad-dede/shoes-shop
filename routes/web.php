@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'can:auth-admin']], function () {
     Route::controller(App\Http\Controllers\Admin\HomeController::class)->group(function () {
         Route::get('/', 'index')->name('home');
     });
